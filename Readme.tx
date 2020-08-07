@@ -1,7 +1,4 @@
 1. Setup Material-ui
 https://material-ui.com/
+https://material-table.com/#/docs/get-started
 
-yarn add @material-ui/core
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-yarn add @material-ui/icons

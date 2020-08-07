@@ -34,11 +34,7 @@ export default function Layout({ children }: Props): ReactElement {
       <Menu />
       <main className={classes.content}>
         <Toolbar />
-        <Container
-          style={{
-            backgroundColor: "red",
-          }}
-        >
+        <Container>
           {children}
         </Container>
       </main>
