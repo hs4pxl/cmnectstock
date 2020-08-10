@@ -2,9 +2,12 @@ import React, { ReactElement } from "react";
 import Header from "../components/layouts/header";
 import Menu from "../components/layouts/menu";
 import Layout from "../components/layouts/layout";
-import MaterialTable from "material-table";
+import MaterialTable, { Action } from "material-table";
 import { products } from "./api/dummy";
 import { Typography } from "@material-ui/core";
+import Moment from "react-moment";
+import NumberFormat from "react-number-format";
+import { Edit, DeleteOutline } from "@material-ui/icons";
 
 interface Props {}
 
@@ -12,7 +15,6 @@ export default function stock({}: Props): ReactElement {
   const columns = [
     {
       title: "ID",
-      field: "id",
       render: (item) => (
         <Typography variant="body1" color="secondary">
           {item.id}
@@ -21,16 +23,16 @@ export default function stock({}: Props): ReactElement {
     },
     {
       title: "IMAGE",
-      field: "image",
-      // cellStyle: { padding: 5 },
-      // render: (item) => (
-      //   <img
-      //     src={`${process.env.NEXT_PUBLIC_APP_BASE_IMAGE_URL}/${
-      //       item.image
-      //     }?version=${Math.random().toString()}`}
-      //     style={{ width: 50, height: 50, borderRadius: "5%" }}
-      //   />
-      // ),
+      cellStyle: { padding: 5 },
+      render: (item) => (
+        <img
+          // src={`${process.env.NEXT_PUBLIC_APP_BASE_IMAGE_URL}/${
+          //   item.image
+          // }?version=${Math.random().toString()}`}
+          src="http://www.codemobiles.com/biz/images/cm_logo.png?ref=10"
+          style={{ width: 50, height: 50, borderRadius: "5%" }}
+        />
+      ),
     },
     {
       title: "NAME",
@@ -40,50 +42,67 @@ export default function stock({}: Props): ReactElement {
     },
     {
       title: "PRICE",
-      field: "price",
-      // render: (item) => (
-      //   <Typography variant="body1">
-      //     <NumberFormat
-      //       value={item.price}
-      //       displayType={"text"}
-      //       thousandSeparator={true}
-      //       decimalScale={2}
-      //       fixedDecimalScale={true}
-      //       prefix={"฿"}
-      //     />
-      //   </Typography>
-      // ),
+      render: (item) => (
+        <Typography variant="body1">
+          <NumberFormat
+            value={item.price}
+            displayType={"text"}
+            thousandSeparator={true}
+            decimalScale={2}
+            fixedDecimalScale={true}
+            prefix={"฿"}
+          />
+        </Typography>
+      ),
     },
     {
       title: "STOCK",
-      field: "stock",
-      // render: (item) => (
-      //   <Typography variant="body1">
-      //     <NumberFormat
-      //       value={item.stock}
-      //       displayType={"text"}
-      //       thousandSeparator={true}
-      //       decimalScale={0}
-      //       fixedDecimalScale={true}
-      //       suffix={" pcs"}
-      //     />
-      //   </Typography>
-      // ),
+      render: (item) => (
+        <Typography variant="body1">
+          <NumberFormat
+            value={item.stock}
+            displayType={"text"}
+            thousandSeparator={true}
+            decimalScale={0}
+            fixedDecimalScale={true}
+            suffix={" pcs"}
+          />
+        </Typography>
+      ),
     },
     {
       title: "CREATED",
-      field: "updatedAt",
-      // render: (item) => (
-      //   <Typography>
-      //     <Moment format="DD/MM/YYYY">{item.updatedAt}</Moment>
-      //   </Typography>
-      // ),
+      render: (item) => (
+        <Typography>
+          <Moment format="DD/MM/YYYY">{item.updatedAt}</Moment>
+        </Typography>
+      ),
+    },
+  ];
+
+  const actions: Action<any>[] = [
+    {
+      icon: () => <Edit />,
+      iconProps: { color: "primary" },
+      tooltip: "Edit",
+      onClick: (event, rowData) => {},
+    },
+    {
+      icon: () => <DeleteOutline />,
+      iconProps: { color: "action" },
+      tooltip: "Delete",
+      onClick: (event, rowData) => {},
     },
   ];
 
   return (
     <Layout>
-      <MaterialTable columns={columns} data={products} title="Course" />
+      <MaterialTable
+        columns={columns}
+        data={products}
+        title="Course"
+        actions={actions}
+      />
     </Layout>
   );
 }
