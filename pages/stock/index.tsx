@@ -8,6 +8,7 @@ import { Typography, Chip, Button } from "@material-ui/core";
 import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
+import Router from "next/router";
 
 interface Props {}
 
@@ -15,11 +16,7 @@ export default function stock({}: Props): ReactElement {
   const columns = [
     {
       title: "ID",
-      render: (item) => (
-        <Typography variant="body1">
-          {item.id}
-        </Typography>
-      ),
+      render: (item) => <Typography variant="body1">{item.id}</Typography>,
     },
     {
       title: "IMAGE",
