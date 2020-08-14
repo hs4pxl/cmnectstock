@@ -9,6 +9,7 @@ import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 import { Edit, DeleteOutline } from "@material-ui/icons";
 import Router from "next/router";
+import axios from "axios";
 
 interface Props {}
 
@@ -82,7 +83,11 @@ export default function stock({}: Props): ReactElement {
       icon: () => <Edit color="secondary" />,
       iconProps: { color: "primary" },
       tooltip: "Edit",
-      onClick: (event, rowData) => {},
+      onClick: (event, rowData) => {
+        Router.push(`/stock/edit?id=${rowData.id}`);
+        //Router.push({ pathname: "/stock/edit", query: { id: rowData.id } });
+        //Router.push("/stock/[action]/[id]", "/stock/action3/22");
+      },
     },
     {
       icon: () => <DeleteOutline color="secondary" />,
