@@ -76,7 +76,6 @@ export default function Register({}: Props): ReactElement {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                //onClick={onClickLogin}
               >
                 Register
               </Button>

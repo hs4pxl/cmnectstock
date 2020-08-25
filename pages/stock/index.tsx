@@ -97,6 +97,19 @@ export default function stock({}: Props): ReactElement {
     },
   ];
 
+  const loadData = async () => {
+    // const result = await axios.get("/api/products");
+    const result = await axios.get(
+      "http://localhost:8085/api/v2/stock/product"
+    );
+    // alert(JSON.stringify(result.data));
+    //setData(result.data);
+  };
+
+  React.useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <Layout>
       <MaterialTable
